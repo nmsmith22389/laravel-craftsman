@@ -40,14 +40,12 @@ if (!function_exists("valid_path")) {
         $path = $inPath;
 
         // whether $path is unix or not
-        $unipath = strlen($path) == 0 || $path{
-            0} != '/';
+        $unipath = strlen($path) == 0 || $path[0] != '/';
         $unc = substr($path, 0, 2) == '\\\\' ? true : false;
         // attempts to detect if path is relative in which case, add cwd
         if (strpos($path, ':') === false && $unipath && !$unc) {
             $path = getcwd() . DIRECTORY_SEPARATOR . $path;
-            if ($path{
-                0} == '/') {
+            if ($path[0] == '/') {
                 $unipath = false;
             }
         }
